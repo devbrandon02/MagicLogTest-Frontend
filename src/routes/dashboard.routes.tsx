@@ -1,4 +1,4 @@
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom"
+import { Navigate, Route } from "react-router-dom"
 import { AppRoutesPath } from "./app.routes"
 import LayoutDashboard from "../layouts/dashboard.layout"
 import { DashboardAInventoryPage } from "../pages/product/admin/inventory-admin.page"

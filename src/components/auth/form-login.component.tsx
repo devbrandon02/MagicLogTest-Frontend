@@ -1,11 +1,11 @@
 import { Box, Button, Field, Heading, Input, Spinner } from "@chakra-ui/react";
 import { PasswordInput } from "../ui/password-input";
 import { useNavigate } from "react-router-dom";
-import { set, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { AppRoutesPath } from "../../routes/app.routes";
-import { loginThunk, clearMessages } from "../../store/user/user.slice";
+import { loginThunk } from "../../store/user/user.slice";
 import { Toaster, toaster } from "../ui/toaster";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState, AppDispatch } from "../../store/index";
@@ -24,7 +24,7 @@ const schema = yup.object({
 const FormLogin = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
-  const { loading, error, successMessage } = useSelector((state: RootState) => state.user);
+  const { loading } = useSelector((state: RootState) => state.user);
 
   const { register, handleSubmit, reset, formState: { errors } } = useForm<FormData>({
     resolver: yupResolver(schema),

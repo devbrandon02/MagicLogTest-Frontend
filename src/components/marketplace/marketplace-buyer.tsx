@@ -1,12 +1,13 @@
 import {
-  Avatar, AvatarGroup, CloseButton, Flex, Grid, GridItem, IconButton,
-  Box, Button, Image, Input, Text, SimpleGrid,
+  Avatar, AvatarGroup, CloseButton, Flex,
+  Box, Button, Text,
+  Input,
 } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import type { RootState } from "../../store/index";
-import { getUsersByRoleThunk, getUserThunk, logout } from "../../store/user/user.slice";
-import { AppRoutesPath, DashboardRoutesPath } from "../../routes/app.routes";
+import { getUsersByRoleThunk, logout } from "../../store/user/user.slice";
+import { DashboardRoutesPath } from "../../routes/app.routes";
 import type { User } from "../../types/user.types";
 import { fetchProductsThunk } from "../../store/product/product.slice";
 import { useEffect, useState } from "react";

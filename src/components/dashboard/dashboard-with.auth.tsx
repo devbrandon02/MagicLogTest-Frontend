@@ -2,11 +2,11 @@ import { Box, Button, CloseButton, Dialog, Field, Input, NumberInput, Portal, Ta
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from "react-hook-form";
 import * as yup from 'yup';
-import { createProductThunk, fetchProductsByUserIdThunk, resetProductState, type Product } from "../../store/product/product.slice";
+import { createProductThunk, fetchProductsByUserIdThunk, resetProductState } from "../../store/product/product.slice";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../../store/index";
 import { Toaster, toaster } from "../ui/toaster";
-import { use, useEffect, useState } from "react";
+import { useEffect } from "react";
 
 type CreateProductFormData = {
   name: string
@@ -25,7 +25,7 @@ const schema = yup.object({
 
 const DashboardWithAuth = () => {
   const dispatch = useDispatch();
-  const { loading, error, successMessage, products } = useSelector((state: RootState) => state.product);
+  const { error, successMessage, products } = useSelector((state: RootState) => state.product);
   const { register, handleSubmit, reset, formState: { errors } } = useForm<CreateProductFormData>({
     resolver: yupResolver(schema),
     defaultValues: {
@@ -35,14 +35,6 @@ const DashboardWithAuth = () => {
       quantity: 0,
     },
   });
-
-  const items = [
-    { id: 1, name: "Laptop", category: "Electronics", price: 999.99 },
-    { id: 2, name: "Coffee Maker", category: "Home Appliances", price: 49.99 },
-    { id: 3, name: "Desk Chair", category: "Furniture", price: 150.0 },
-    { id: 4, name: "Smartphone", category: "Electronics", price: 799.99 },
-    { id: 5, name: "Headphones", category: "Accessories", price: 199.99 },
-  ]
 
   const onSubmit = async (data: CreateProductFormData) => {
     await dispatch<any>(createProductThunk({
